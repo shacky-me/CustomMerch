@@ -5,7 +5,7 @@ class AppState {
       {
         id: 1,
         name: "Custom T-Shirt",
-        price: 24.99,
+        price: 3300, // Converted from $24.99 (approx 1 USD = 132 KSH)
         category: "apparel",
         description: "Premium cotton t-shirt perfect for custom designs",
         icon: "fas fa-tshirt",
@@ -14,7 +14,7 @@ class AppState {
       {
         id: 2,
         name: "Custom Mug",
-        price: 14.99,
+        price: 1980, // Converted from $14.99
         category: "home",
         description: "Ceramic mug ideal for personalized messages",
         icon: "fas fa-mug-hot",
@@ -23,7 +23,7 @@ class AppState {
       {
         id: 3,
         name: "Custom Hat",
-        price: 19.99,
+        price: 2640, // Converted from $19.99
         category: "accessories",
         description: "Adjustable cap perfect for logos and text",
         icon: "fas fa-hat-cowboy",
@@ -32,7 +32,7 @@ class AppState {
       {
         id: 4,
         name: "Custom Hoodie",
-        price: 39.99,
+        price: 5280, // Converted from $39.99
         category: "apparel",
         description: "Comfortable hoodie with custom design options",
         icon: "fas fa-tshirt",
@@ -41,7 +41,7 @@ class AppState {
       {
         id: 5,
         name: "Custom Phone Case",
-        price: 16.99,
+        price: 2240, // Converted from $16.99
         category: "accessories",
         description: "Protective case with personalization options",
         icon: "fas fa-mobile-alt",
@@ -50,7 +50,7 @@ class AppState {
       {
         id: 6,
         name: "Custom Notebook",
-        price: 12.99,
+        price: 1720, // Converted from $12.99
         category: "home",
         description: "High-quality notebook for custom covers",
         icon: "fas fa-book",
@@ -59,7 +59,7 @@ class AppState {
       {
         id: 7,
         name: "Custom Tote Bag",
-        price: 18.99,
+        price: 2500, // Converted from $18.99
         category: "accessories",
         description: "Eco-friendly tote bag for custom prints",
         icon: "fas fa-shopping-bag",
@@ -68,7 +68,7 @@ class AppState {
       {
         id: 8,
         name: "Custom Mouse Pad",
-        price: 11.99,
+        price: 1580, // Converted from $11.99
         category: "home",
         description: "Professional mouse pad with custom graphics",
         icon: "fas fa-desktop",
@@ -125,42 +125,42 @@ class AppState {
 
     if (this.filteredProducts.length === 0) {
       productsGrid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: hsl(var(--text-secondary));">
-                    <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: hsl(var(--primary));"></i>
-                    <p>No products found matching your criteria.</p>
-                </div>
-            `;
+                  <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: hsl(var(--text-secondary));">
+                      <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 1rem; color: hsl(var(--primary));"></i>
+                      <p>No products found matching your criteria.</p>
+                  </div>
+              `;
       return;
     }
 
     productsGrid.innerHTML = this.filteredProducts
       .map(
         (product) => `
-            <div class="product-card" data-product-id="${product.id}">
-                <div class="product-image">
-                    <i class="${product.icon}"></i>
-                </div>
-                <div class="product-info">
-                    <h3 class="product-name">${product.name}</h3>
-                    <div class="product-price">$${product.price.toFixed(
-                      2
-                    )}</div>
-                    <p class="product-description">${product.description}</p>
-                    <div class="product-actions">
-                        <button class="btn btn-secondary" onclick="app.openProductModal(${
-                          product.id
-                        })">
-                            <i class="fas fa-eye"></i> View
-                        </button>
-                        <button class="btn btn-primary" onclick="app.selectProductForCustomization(${
-                          product.id
-                        })">
-                            <i class="fas fa-paint-brush"></i> Customize
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `
+              <div class="product-card" data-product-id="${product.id}">
+                  <div class="product-image">
+                      <i class="${product.icon}"></i>
+                  </div>
+                  <div class="product-info">
+                      <h3 class="product-name">${product.name}</h3>
+                      <div class="product-price">KShs ${product.price.toFixed(
+                        2
+                      )}</div>
+                      <p class="product-description">${product.description}</p>
+                      <div class="product-actions">
+                          <button class="btn btn-secondary" onclick="app.openProductModal(${
+                            product.id
+                          })">
+                              <i class="fas fa-eye"></i> View
+                          </button>
+                          <button class="btn btn-primary" onclick="app.selectProductForCustomization(${
+                            product.id
+                          })">
+                              <i class="fas fa-paint-brush"></i> Customize
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          `
       )
       .join("");
   }
@@ -312,45 +312,45 @@ class AppState {
     // Update cart items
     if (this.cart.length === 0) {
       cartItems.innerHTML = `
-                <div class="empty-cart">
-                    <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem; color: hsl(var(--primary));"></i>
-                    <p>Your cart is empty</p>
-                    <p>Add some products to get started!</p>
-                </div>
-            `;
+                  <div class="empty-cart">
+                      <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem; color: hsl(var(--primary));"></i>
+                      <p>Your cart is empty</p>
+                      <p>Add some products to get started!</p>
+                  </div>
+              `;
     } else {
       cartItems.innerHTML = this.cart
         .map(
           (item) => `
-                <div class="cart-item">
-                    <div class="cart-item-image">
-                        <i class="${item.product.icon}"></i>
-                    </div>
-                    <div class="cart-item-info">
-                        <div class="cart-item-name">${item.product.name}</div>
-                        <div class="cart-item-price">$${(
-                          item.price * item.quantity
-                        ).toFixed(2)}</div>
-                        ${this.getCustomizationSummary(item.customization)}
-                    </div>
-                    <div class="cart-item-actions">
-                        <div class="quantity-controls">
-                            <button class="quantity-btn" onclick="app.updateCartItemQuantity(${
-                              item.id
-                            }, ${item.quantity - 1})">-</button>
-                            <span>${item.quantity}</span>
-                            <button class="quantity-btn" onclick="app.updateCartItemQuantity(${
-                              item.id
-                            }, ${item.quantity + 1})">+</button>
-                        </div>
-                        <button class="remove-item" onclick="app.removeFromCart(${
-                          item.id
-                        })">
-                            <i class="fas fa-trash"></i> Remove
-                        </button>
-                    </div>
-                </div>
-            `
+                  <div class="cart-item">
+                      <div class="cart-item-image">
+                          <i class="${item.product.icon}"></i>
+                      </div>
+                      <div class="cart-item-info">
+                          <div class="cart-item-name">${item.product.name}</div>
+                          <div class="cart-item-price">KShs ${(
+                            item.price * item.quantity
+                          ).toFixed(2)}</div>
+                          ${this.getCustomizationSummary(item.customization)}
+                      </div>
+                      <div class="cart-item-actions">
+                          <div class="quantity-controls">
+                              <button class="quantity-btn" onclick="app.updateCartItemQuantity(${
+                                item.id
+                              }, ${item.quantity - 1})">-</button>
+                              <span>${item.quantity}</span>
+                              <button class="quantity-btn" onclick="app.updateCartItemQuantity(${
+                                item.id
+                              }, ${item.quantity + 1})">+</button>
+                          </div>
+                          <button class="remove-item" onclick="app.removeFromCart(${
+                            item.id
+                          })">
+                              <i class="fas fa-trash"></i> Remove
+                          </button>
+                      </div>
+                  </div>
+              `
         )
         .join("");
     }
@@ -382,7 +382,7 @@ class AppState {
     ).innerHTML = `<i class="${product.icon}"></i>`;
     document.getElementById(
       "productModalPrice"
-    ).textContent = `$${product.price.toFixed(2)}`;
+    ).textContent = `KShs ${product.price.toFixed(2)}`;
     document.getElementById("productModalDescription").textContent =
       product.description;
 
@@ -415,24 +415,26 @@ class AppState {
     // Populate checkout summary
     const checkoutSummary = document.getElementById("checkoutSummary");
     checkoutSummary.innerHTML = `
-            <div style="background: hsl(var(--surface-secondary)); padding: 1rem; border-radius: 8px;">
-                ${this.cart
-                  .map(
-                    (item) => `
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>${item.product.name} x${item.quantity}</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
-                    </div>
-                `
-                  )
-                  .join("")}
-                <hr style="margin: 1rem 0; border: none; border-top: 1px solid hsl(var(--border));">
-                <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.25rem;">
-                    <span>Total:</span>
-                    <span>$${this.getCartTotal().toFixed(2)}</span>
-                </div>
-            </div>
-        `;
+              <div style="background: hsl(var(--surface-secondary)); padding: 1rem; border-radius: 8px;">
+                  ${this.cart
+                    .map(
+                      (item) => `
+                      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                          <span>${item.product.name} x${item.quantity}</span>
+                          <span>KShs ${(item.price * item.quantity).toFixed(
+                            2
+                          )}</span>
+                      </div>
+                  `
+                    )
+                    .join("")}
+                  <hr style="margin: 1rem 0; border: none; border-top: 1px solid hsl(var(--border));">
+                  <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.25rem;">
+                      <span>Total:</span>
+                      <span>KShs ${this.getCartTotal().toFixed(2)}</span>
+                  </div>
+              </div>
+          `;
 
     this.openModal("checkoutModal");
   }
