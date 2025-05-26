@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomCraft - Personalized Merchandise</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.svg" alt="CustomCraft" class="logo">
+                <span class="logo-text">CustomCraft</span>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#customize" class="nav-link">Customize</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Create Your Perfect <span class="highlight">Custom Merchandise</span></h1>
+                <p class="hero-subtitle">Design personalized products with our easy-to-use customization tools. From
+                    t-shirts to mugs, make it uniquely yours.</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToSection('products')">Start Shopping</button>
+                    <button class="btn btn-secondary" onclick="scrollToSection('customize')">Design Now</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-product-showcase">
+                    <div class="showcase-item">
+                        <div class="product-preview">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Products</h2>
+                <p class="section-subtitle">Choose from our wide range of customizable merchandise</p>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" data-category="all">All Products</button>
+                <button class="filter-btn" data-category="apparel">Apparel</button>
+                <button class="filter-btn" data-category="accessories">Accessories</button>
+                <button class="filter-btn" data-category="home">Home & Office</button>
+            </div>
+
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Customization Section -->
+    <section id="customize" class="customize-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Customize Your Product</h2>
+                <p class="section-subtitle">Make it unique with our customization tools</p>
+            </div>
+
+            <div class="customization-workspace" id="customizationWorkspace" style="display: none;">
+                <div class="product-preview-area">
+                    <div class="preview-container">
+                        <div class="product-canvas" id="productCanvas">
+                            <div class="base-product" id="baseProduct"></div>
+                            <div class="custom-text" id="customText"></div>
+                            <div class="custom-design" id="customDesign"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customization-panel">
+                    <div class="panel-section">
+                        <h3>Colors</h3>
+                        <div class="color-options" id="colorOptions">
+                            <div class="color-option active" data-color="#000000" style="background-color: #000000;">
+                            </div>
+                            <div class="color-option" data-color="#ffffff" style="background-color: #ffffff;"></div>
+                            <div class="color-option" data-color="#ff0000" style="background-color: #ff0000;"></div>
+                            <div class="color-option" data-color="#00ff00" style="background-color: #00ff00;"></div>
+                            <div class="color-option" data-color="#0000ff" style="background-color: #0000ff;"></div>
+                            <div class="color-option" data-color="#ffff00" style="background-color: #ffff00;"></div>
+                            <div class="color-option" data-color="#ff00ff" style="background-color: #ff00ff;"></div>
+                            <div class="color-option" data-color="#00ffff" style="background-color: #00ffff;"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3>Add Text</h3>
+                        <input type="text" class="text-input" id="textInput" placeholder="Enter your text...">
+                        <div class="text-controls">
+                            <label>Font Size:</label>
+                            <input type="range" id="fontSizeSlider" min="12" max="48" value="24">
+                            <label>Text Color:</label>
+                            <input type="color" id="textColorPicker" value="#000000">
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <h3>Designs</h3>
+                        <div class="design-options" id="designOptions">
+                            <div class="design-option" data-design="star">⭐</div>
+                            <div class="design-option" data-design="heart">❤️</div>
+                            <div class="design-option" data-design="lightning">⚡</div>
+                            <div class="design-option" data-design="peace">✌️</div>
+                            <div class="design-option" data-design="smile">😊</div>
+                            <div class="design-option" data-design="cool">😎</div>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="customization-actions">
+                            <button class="btn btn-secondary" id="resetCustomization">Reset</button>
+                            <button class="btn btn-primary" id="addToCartBtn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="select-product-prompt" id="selectProductPrompt">
+                <div class="prompt-content">
+                    <i class="fas fa-arrow-up"></i>
+                    <p>Select a product above to start customizing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About CustomCraft</h2>
+                <p class="section-subtitle">Your one-stop destination for personalized merchandise</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Story</h3>
+                    <p>Founded in 2024, CustomCraft was born from a simple idea: everyone deserves to express their
+                        unique personality through custom merchandise. We believe that personalization isn't just about
+                        adding your name to a product – it's about creating something that truly represents who you are.
+                    </p>
+
+                    <h3>What We Offer</h3>
+                    <p>From custom t-shirts and hoodies to personalized mugs and phone cases, we provide high-quality
+                        products that you can design exactly how you want them. Our easy-to-use customization tools let
+                        you add text, choose colors, and select designs to make each item uniquely yours.</p>
+
+                    <h3>Our Commitment</h3>
+                    <p>We're committed to quality, creativity, and customer satisfaction. Every product is carefully
+                        crafted using premium materials and state-of-the-art printing technology to ensure your custom
+                        designs look amazing and last for years to come.</p>
+                </div>
+
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Easy Customization</h4>
+                        <p>Intuitive design tools that make creating custom products simple and fun for everyone.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h4>Premium Quality</h4>
+                        <p>We use only the finest materials and professional-grade printing for durable, vibrant
+                            results.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h4>Fast Delivery</h4>
+                        <p>Quick processing and reliable shipping to get your custom products to you as soon as
+                            possible.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Customer Love</h4>
+                        <p>Dedicated support team ready to help you create the perfect custom merchandise experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total: $<span id="cartTotal">0.00</span></span>
+            </div>
+            <button class="btn btn-primary btn-full" id="checkoutBtn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Checkout</h3>
+                <button class="close-modal" id="closeCheckout">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-section">
+                        <h4>Shipping Information</h4>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="zipCode">ZIP Code</label>
+                                <input type="text" id="zipCode" name="zipCode" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Order Summary</h4>
+                        <div id="checkoutSummary"></div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="cancelCheckout">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productModalTitle">Product Details</h3>
+                <button class="close-modal" id="closeProductModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="product-detail-content">
+                    <div class="product-detail-image">
+                        <div id="productModalImage"></div>
+                    </div>
+                    <div class="product-detail-info">
+                        <div class="product-price" id="productModalPrice"></div>
+                        <div class="product-description" id="productModalDescription"></div>
+                        <div class="product-actions">
+                            <button class="btn btn-secondary" id="customizeProductBtn">Customize</button>
+                            <button class="btn btn-primary" id="quickAddToCart">Quick Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <span id="successText">Item added to cart!</span>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
